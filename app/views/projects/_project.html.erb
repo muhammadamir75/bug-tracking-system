@@ -1,0 +1,26 @@
+<% if obj.nil? %>
+  <h1>No Project yet</h1>
+<% else %>
+  <% obj.each do |project| %>
+    <div class="row">
+      <div class="col-md-8 well">
+        <h4><%= link_to project.name, project_path(project) %></h4>
+        <p>
+          <span class="quiet">
+            <small>Created <%= time_ago_in_words(project.created_at) %> ago by</small>
+          </span>
+        </p>
+        <% if logged_in?  %>
+          <div class="project-actions">
+            <%= link_to "Edit this project", edit_project_path(project), class: "btn btn-xs btn-warning" %>
+            <%= link_to "Delete this project", project_path(project), method: :delete, 
+                        data: { confirm: "Are you sure you want to delete this project?"},
+                        class: "btn btn-xs btn-danger" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+<%= link_to "Add a new Project", new_project_path %>

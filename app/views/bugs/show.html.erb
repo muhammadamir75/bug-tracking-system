@@ -1,0 +1,33 @@
+<%= render "shared/page_title", title: "#{@bug.title}" %>
+
+<div class="well col-md-8 col-md-offset-2">
+  <h4 class="center description"><strong>description: </strong></h4>
+  <hr />
+  <%= simple_format(@bug.description) %>
+  <hr />
+  <div class="pull-right">
+    <p class="center">
+      <em>Created by:</em>
+    </p>
+    <p class="center">
+      <%= link_to gravatar_for(@bug.project.user), user_path(@bug.project.user) %>
+    </p>
+    <p class="center">
+      <small><%= @bug.project.user.firstname.capitalize %> <%= @bug.project.user.lastname.capitalize %></small>
+      <div class="pull-right"><%= time_ago_in_words(@bug.created_at) %> ago</div>
+    </p>
+  </div>
+  <div class="bug-actions">
+    <% if current_user.user_type != "manager" %>
+      <%= link_to "Join this #{@bug.task_type}", "#", class: "btn btn-xs btn-success" %>
+    <% end %>
+
+    <% if logged_in? && (current_user == @bug.project.user) %>
+      <%= link_to "Edit this bug", edit_project_bug_path(@project, @bug), class: "btn btn-xs btn-warning" %>
+      <%= link_to "Delete this bug", project_bug_path(@project, @bug), method: :delete, 
+                  data: { confirm: "Are you sure you want to delete this bug?"},
+                  class: "btn btn-xs btn-danger" %>
+    <% end %>
+    <%= link_to "Return to bugs listing", project_bugs_path, class: "btn btn-xs btn-primary" %>
+  </div>
+</div>

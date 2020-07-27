@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_24_133701) do
+ActiveRecord::Schema.define(version: 2020_07_27_120815) do
+
+  create_table "bugs", force: :cascade do |t|
+    t.integer "project_id", null: false
+    t.string "title", null: false
+    t.text "description"
+    t.date "deadline"
+    t.string "sc"
+    t.integer "task_type", default: 0
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_bugs_on_project_id"
+  end
 
   create_table "projects", force: :cascade do |t|
     t.integer "user_id", null: false

@@ -6,5 +6,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   enum user_type: [:qa, :developer, :manager]
+
+  has_many :projects, dependent: :destroy
   
 end

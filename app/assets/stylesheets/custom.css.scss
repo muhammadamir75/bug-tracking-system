@@ -62,4 +62,29 @@ $navbar-default-bg: #073815;
 }
 .project-info{
   margin-top: 15px;
-} 
+}
+
+
+.project-actions{
+  padding-top: 5px;
+  a {
+      color: #fff;
+  }
+}
+
+.listing {
+  list-style: none;
+  paddong-left: 0;
+}
+
+.project-title {
+  color: #073815;
+  font-weight: bold;
+  font-size: 1.25em;
+}
+
+.bug-title {
+  color: #073815;
+  font-weight: bold;
+  font-size: 1.25em;
+}
